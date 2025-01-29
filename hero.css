@@ -1,0 +1,99 @@
+ /* Hero section styles */
+ @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+ .hero-content {
+   background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+   padding: 4rem 2rem;
+   text-align: center;
+   color: #333;
+   font-family: "Poppins", sans-serif;
+   position: relative;
+   overflow: hidden;
+ }
+ 
+ .hero-content::before {
+   content: "";
+   position: absolute;
+   top: -50%;
+   left: -50%;
+   width: 200%;
+   height: 200%;
+   background: repeating-linear-gradient(
+     45deg,
+     transparent,
+     transparent 10px,
+     rgba(255, 255, 255, 0.1) 10px,
+     rgba(255, 255, 255, 0.1) 20px
+   );
+   animation: move-background 20s linear infinite;
+   z-index: 1;
+ }
+ 
+ @keyframes move-background {
+   0% {
+     transform: translate(0, 0);
+   }
+   100% {
+     transform: translate(50%, 50%);
+   }
+ }
+ 
+ .hero-content h1 {
+   font-size: 3.5rem;
+   margin-bottom: 0.5rem;
+   position: relative;
+   z-index: 2;
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .motto {
+   font-size: 1.2rem;
+   margin-bottom: 2rem;
+   position: relative;
+   z-index: 2;
+ }
+ 
+ .cta-button {
+   display: inline-block;
+   padding: 0.8rem 1.5rem;
+   background-color: #ff6b6b;
+   color: white;
+   text-decoration: none;
+   border-radius: 30px;
+   font-weight: bold;
+   transition: all 0.3s ease;
+   position: relative;
+   z-index: 2;
+   overflow: hidden;
+ }
+ 
+ .cta-button::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+   transition: all 0.4s ease;
+ }
+ 
+ .cta-button:hover {
+   transform: translateY(-3px);
+   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+ }
+ 
+ .cta-button:hover::before {
+   left: 100%;
+ }
+ 
+ @media (max-width: 768px) {
+   .hero-content h1 {
+     font-size: 2.5rem;
+   }
+ 
+   .motto {
+     font-size: 1rem;
+   }
+ }
+ 
