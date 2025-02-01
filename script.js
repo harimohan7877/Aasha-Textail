@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Website Loaded!");
+    console.log("वेबसाइट लोड हो गई!");
 
-    // 🌐 Load HTML Sections Dynamically
+    // 🌐 HTML खंडों को गतिशील रूप से लोड करें
     const sections = ["header", "hero", "ladies-items", "youtube-channel", "about-us", "contact", "footer"];
     sections.forEach(section => {
         fetch(`${section}.html`)
             .then(response => response.text())
             .then(data => document.getElementById(section).innerHTML = data)
-            .catch(error => console.error(`Error loading ${section}.html:`, error));
+            .catch(error => console.error(`${section}.html लोड करने में त्रुटि:`, error));
     });
 
-    // 🛒 Shopping Cart System
+    // 🛒 शॉपिंग कार्ट प्रणाली
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     function updateCart() {
         localStorage.setItem("cart", JSON.stringify(cart));
-        console.log("Current Cart:", cart);
+        console.log("वर्तमान कार्ट:", cart);
     }
 
     document.addEventListener("click", (e) => {
@@ -27,12 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 cart.push({ itemName, price });
                 updateCart();
-                alert(`${itemName} added to cart!`);
+                alert(`${itemName} कार्ट में जोड़ा गया!`);
             }
         }
     });
 
-    // 🎥 YouTube Video Lazy Loading
+    // 🎥 YouTube वीडियो लेजी लोडिंग
     const youtubeContainer = document.querySelector(".video-container");
     const youtubeButton = document.querySelector("#youtube-channel .btn");
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 📜 Smooth Scrolling
+    // 📜 स्मूथ स्क्रॉलिंग
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
@@ -55,13 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 🌙 Dark Mode Toggle
+    // 🌙 डार्क मोड टॉगल
     const themeToggle = document.getElementById("theme-toggle");
     let darkMode = localStorage.getItem("darkMode") === "enabled";
 
     function applyTheme() {
         document.body.classList.toggle("dark-mode", darkMode);
-        themeToggle.textContent = darkMode ? "☀ Light Mode" : "🌙 Dark Mode";
+        themeToggle.textContent = darkMode ? "☀ लाइट मोड" : "🌙 डार्क मोड";
     }
 
     if (themeToggle) {
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         applyTheme();
     }
 
-    // 🛒 Product Slider Drag Scroll
+    // 🛒 उत्पाद स्लाइडर ड्रैग स्क्रॉल
     const productSlider = document.querySelector(".product-slider");
     let isDown = false, startX, scrollLeft;
 
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 📧 Contact Form Submission
+    // 📧 संपर्क फॉर्म सबमिशन
     const contactForm = document.getElementById("contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", (e) => {
@@ -125,4 +125,51 @@ document.addEventListener("DOMContentLoaded", () => {
             contactForm.reset();
         });
     }
+
+    // पूर्ण स्क्रीन छवि देखें
+    const fullscreenOverlay = document.querySelector('.fullscreen-overlay');
+    const fullscreenImage = document.querySelector('.fullscreen-image');
+    const closeFullscreen = document.querySelector('.close-fullscreen');
+    const categoryCards = document.querySelectorAll('.category-card img');
+
+    categoryCards.forEach(img => {
+        img.addEventListener('click', function() {
+            fullscreenImage.src = this.src;
+            fullscreenOverlay.style.display = 'flex';
+        });
+    });
+
+    closeFullscreen.addEventListener('click', function() {
+        fullscreenOverlay.style.display = 'none';
+    });
+
+    // और अधिक दिखाएँ बटन कार्यक्षमता
+    const showMoreBtn = document.querySelector('.show-more-btn');
+    const categoryGrid = document.querySelector('.category-grid');
+    let visibleItems = 12;
+
+    function showItems() {
+        const allItems = categoryGrid.querySelectorAll('.category-card');
+        allItems.forEach((item, index) => {
+            if (index < visibleItems) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        if (visibleItems >= allItems.length) {
+            showMoreBtn.style.display = 'none';
+        }
+    }
+
+    if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', function() {
+            visibleItems += 12;
+            showItems();
+        });
+    }
+
+    // प्रारंभिक प्रदर्शन
+    showItems();
 });
