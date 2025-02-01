@@ -1,100 +1,117 @@
- /* Ladies Items section styles */
- .category-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 20px;
-}
-
 .category-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 10px;
-}
-
-.category-card {
-    min-width: 250px;
-    max-width: 280px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    margin-right: 20px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.category-card:hover {
-    transform: scale(1.05);
-}
-
-.category-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.price {
-    font-size: 16px;
-    font-weight: bold;
-    color: #ff5722;
-}
-
-.add-item-btn {
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-}
-
-.add-item-btn:hover {
-    background-color: #e64a19;
-}
-
-/* Scroll Buttons */
-.scroll-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 24px;
-    transition: background 0.3s;
-}
-
-.scroll-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.left-btn {
-    left: 10px;
-}
-
-.right-btn {
-    right: 10px;
-}
-
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
   
   .category-card {
-    border: 1px solid #ddd;
-    padding: 1rem;
-    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .category-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .category-card h3 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+    padding: 0 10px;
+  }
+  
+  .category-card .price {
+    font-size: 16px;
+    color: #e44d26;
+    margin: 0 0 10px;
+    padding: 0 10px;
   }
   
   .add-item-btn {
-    background-color: #4caf50;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-item-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* Full-screen image view */
+  .fullscreen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+  
+  .close-fullscreen {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* Show More button */
+  .show-more-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .show-more-btn {
+    background-color: #008CBA;
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .show-more-btn:hover {
+    background-color: #007B9A;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .category-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .category-grid {
+      grid-template-columns: 1fr;
+    }
   }
